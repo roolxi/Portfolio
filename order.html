@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>طلب الخدمة — أسامة</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#06110d;--bg2:#08160f;--card:#0b1f17;--line:#143227;--txt:#eef3ef;--muted:#a7bfb3;
+      --brand:#22c55e;--brand2:#10b981;--accent:#84cc16;
+      --radius:18px;--maxw:1100px;--shadow:0 14px 44px rgba(0,0,0,.38)
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0}
+    body{font-family:'Tajawal',system-ui,-apple-system,Segoe UI,Roboto;line-height:1.7;color:var(--txt);
+      background:
+        radial-gradient(800px 500px at 10% 0%,rgba(34,197,94,.08),transparent 60%),
+        radial-gradient(900px 600px at 90% 10%,rgba(16,185,129,.06),transparent 60%),
+        linear-gradient(120deg,#06110d 0%,#0a1a13 50%,#08160f 100%);
+      min-height:100dvh}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:var(--maxw);margin-inline:auto;padding:0 20px}
+    .nav{position:sticky;top:0;z-index:50;background:rgba(10,14,24,.6);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+    .nav .wrap{height:68px;display:flex;align-items:center;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:10px}
+    .logo-dot{width:14px;height:14px;border-radius:50%;background:conic-gradient(from 200deg,var(--brand),var(--brand2),var(--accent));box-shadow:0 0 18px rgba(16,185,129,.35)}
+    .brand h1{margin:0;font-size:18px}
+    .menu{display:flex;gap:10px;align-items:center}
+    .menu a{padding:10px 12px;border-radius:999px;color:var(--muted)}
+    .menu a:hover{color:var(--txt);background:rgba(255,255,255,.06)}
+
+    .hero{padding:60px 0 36px;position:relative}
+    .hero h2{font-size:38px;margin:8px 0 10px}
+    .hero p{color:var(--muted);margin:0}
+    .steps{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+    .chip{display:flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.03);color:#d9fbe8;font-size:14px}
+    section{padding:28px 0}
+
+    .grid{display:grid;gap:16px}
+    @media(min-width:860px){.grid.cols-3{grid-template-columns:repeat(3,1fr)}}
+
+    .card{position:relative;border:1px solid var(--line);border-radius:var(--radius);
+      background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.02));
+      box-shadow:var(--shadow);overflow:hidden}
+    .card::after{content:"";position:absolute;inset:-1px;border-radius:inherit;pointer-events:none;opacity:.25;
+      background:conic-gradient(from 200deg,rgba(34,197,94,.35),rgba(16,185,129,.25),rgba(132,204,22,.2),transparent 60%);
+      filter:blur(26px);transition:opacity .25s ease}
+    .card:hover::after{opacity:.6}
+    .panel{padding:18px}
+
+    .choice{cursor:pointer;padding:18px;border-radius:var(--radius);border:2px solid transparent;transition:border-color .2s,transform .18s}
+    .choice:hover{border-color:#1f7a55;transform:translateY(-2px)}
+    .choice.active{border-color:var(--brand)}
+    .choice h3{margin:6px 0 6px}
+    .muted{color:var(--muted)}
+    .pkg{display:grid;gap:14px}
+    .pkg .price{font-size:26px;margin:6px 0;display:flex;align-items:baseline;gap:6px}
+    .sar{display:inline-block;width:.86em;height:.86em;vertical-align:-.16em;margin:0 .1em;filter:invert(66%) sepia(24%) saturate(820%) hue-rotate(86deg) brightness(95%) contrast(92%);opacity:.95}
+
+    /* ===== Addons ===== */
+    .addons{display:grid;gap:12px}
+    @media(min-width:900px){.addons{grid-template-columns:repeat(2,1fr)}}
+    .addon{display:grid;grid-template-columns:28px 1fr auto;align-items:center;gap:12px;padding:14px 16px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));transition:border-color .2s ease,transform .2s ease}
+    .addon:hover{border-color:#1f7a55;transform:translateY(-1px)}
+
+    /* Checkbox (رجّعناه مثل أول) */
+    .chk{-webkit-appearance:none;appearance:none;width:22px;height:22px;border:1px solid var(--line);border-radius:8px;background:#0f1a13;position:relative;display:block;transition:border-color .2s,background .2s,transform .12s,box-shadow .2s}
+    .chk::after{content:"";position:absolute;width:8px;height:14px;border:3px solid #0b1f17;border-top:0;border-left:0;top:50%;left:50%;transform:translate(-50%,-50%) rotate(45deg) scale(0);transform-origin:center;transition:transform .22s cubic-bezier(.2,.8,.2,1)}
+    .chk:checked{background:linear-gradient(135deg,var(--brand),var(--brand2));border-color:var(--brand);box-shadow:0 8px 22px rgba(16,185,129,.25)}
+    .chk:checked::after{transform:translate(-50%,-50%) rotate(45deg) scale(1)}
+
+    .addon.included{border-color:#23543c;background:linear-gradient(180deg,rgba(34,197,94,.08),rgba(34,197,94,.04))}
+    .label-text{white-space:normal;line-height:1.6}
+    .amt{display:flex;align-items:baseline;gap:6px;color:#c8f7df;font-weight:800}
+    .amt s{opacity:.7}
+
+    .bundlebar{display:none;margin:0 0 10px;padding:12px 14px;border-radius:14px;border:1px solid #1c513b;background:linear-gradient(135deg,rgba(34,197,94,.18),rgba(16,185,129,.12));box-shadow:0 10px 26px rgba(16,185,129,.18)}
+    .bundlebar.show{display:block;animation:fadeSlide .35s ease}
+
+    /* ===== Company pages (سلايدر محسّن بفيـل منفصل) ===== */
+    .pages-card{grid-column:1/-1;display:grid;gap:12px;padding:18px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.03))}
+    .pages-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+    .pages-head .title{font-weight:800}
+    .free-note{color:#bfe7d2}
+    .pages-meta{display:flex;align-items:center;gap:14px}
+    .badge{padding:4px 10px;border-radius:999px;border:1px solid #2a6b50;background:rgba(255,255,255,.06)}
+
+    .slider{position:relative;height:32px;display:flex;align-items:center;overflow:visible}
+    .slider .track{position:absolute;inset:0;border-radius:999px;background:#0e2019;border:1px solid #264f3b;box-shadow:inset 0 0 0 1px rgba(255,255,255,.04);height:10px;margin-block:auto}
+    .slider .fill{position:absolute;left:0;top:0;bottom:0;border-radius:999px;background:linear-gradient(90deg,var(--brand),var(--brand2));box-shadow:0 8px 18px rgba(16,185,129,.35);width:0%;height:10px;will-change:width;transition:width .25s cubic-bezier(.2,.8,.2,1)}
+    .slider input[type=range]{position:absolute;inset:0;appearance:none;background:transparent;width:100%;direction:ltr}
+    .slider input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:50%;background:conic-gradient(from 200deg,var(--brand),var(--brand2),var(--accent));box-shadow:0 8px 20px rgba(16,185,129,.4),0 0 0 4px rgba(34,197,94,.15);border:1px solid #1d6b4c;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease}
+    .slider input[type=range]:hover::-webkit-slider-thumb{box-shadow:0 8px 24px rgba(16,185,129,.5),0 0 0 6px rgba(34,197,94,.18)}
+    .slider input[type=range]:active::-webkit-slider-thumb{transform:scale(1.08)}
+    .slider input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:conic-gradient(from 200deg,var(--brand),var(--brand2),var(--accent));box-shadow:0 8px 20px rgba(16,185,129,.4),0 0 0 4px rgba(34,197,94,.15);border:1px solid #1d6b4c;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease}
+
+    /* ===== Form / Checkout (رجّعناه نظيف) ===== */
+    .form{display:grid;gap:12px}
+    label{font-weight:800}
+    input,textarea,select{width:100%;padding:12px 14px;border-radius:14px;border:1px solid var(--line);background:#0f1a13;color:#eafff5;outline:none;font-family:inherit;transition:border-color .2s,box-shadow .2s}
+    input::placeholder,textarea::placeholder{font-family:inherit;color:#bfe7d2}
+    input:focus,textarea:focus{border-color:#1f7a55;box-shadow:0 0 0 6px rgba(34,197,94,.12)}
+    textarea{min-height:140px;resize:vertical}
+
+    .total{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-radius:16px;border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.03));font-weight:800}
+    .send{padding:12px 18px;border-radius:14px;font-weight:800;font-family:inherit;font-size:16px;letter-spacing:.2px;border:1px solid #274a38;background:linear-gradient(135deg,#1a3a2c,#132a1f);color:#eafff5;box-shadow:0 10px 30px rgba(16,185,129,.25);transition:transform .15s,filter .2s}
+    .send:hover{transform:translateY(-1px);filter:brightness(1.05)}
+    .send:active{transform:translateY(0) scale(.99)}
+
+    /* ====== Motion for picking Basic / Pro / Adv (باقة) ====== */
+    .choice.pkg{position:relative;transition:border-color .22s,transform .18s,box-shadow .22s}
+    .choice.pkg.picked{box-shadow:0 18px 55px rgba(16,185,129,.22)}
+    .choice.pkg.picked .price{animation:shine 800ms ease-out}
+    .choice.pkg.picked{animation:pickPop .28s cubic-bezier(.2,.65,.2,1.4)}
+    .choice.pkg::before{content:"";position:absolute;inset:-2px;border-radius:inherit;pointer-events:none;opacity:0;filter:blur(22px);background:conic-gradient(from 210deg,rgba(34,197,94,.55),rgba(16,185,129,.35),rgba(132,204,22,.25),transparent 65%)}
+    .choice.pkg.picked::before{animation:sweep 700ms ease-out}
+
+    @keyframes pickPop{0%{transform:scale(1)}60%{transform:scale(1.02)}100%{transform:scale(1)}}
+    @keyframes shine{0%{text-shadow:0 0 0 rgba(34,197,94,0)}70%{text-shadow:0 0 18px rgba(34,197,94,.35)}100%{text-shadow:0 0 0 rgba(34,197,94,0)}}
+    @keyframes sweep{0%{opacity:.0;transform:scale(1.1) rotate(0)}30%{opacity:.6}100%{opacity:0;transform:scale(1.5) rotate(220deg)}}
+
+    /* عدّاد الصفحات بلمسة خفيفة */
+    #pagesCount.bump{animation:bump .22s ease}
+    @keyframes bump{0%{transform:translateY(0) scale(1)}40%{transform:translateY(-2px) scale(1.08)}100%{transform:translateY(0) scale(1)}}
+
+    @keyframes fadeSlide{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container wrap">
+      <div class="brand">
+        <span class="logo-dot"></span>
+        <a href="index.html#home"><h1>أسامة</h1></a>
+      </div>
+      <div class="menu"></div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container">
+      <h2>ابدأ طلبك الآن</h2>
+      <p class="muted">اختر الخدمة، ثم الباقة، ثم الإضافات — وعرّفنا عن نشاطك. برسالة واتساب واحدة نبدأ التنفيذ.</p>
+      <div class="steps">
+        <div class="chip">1) اختيار الخدمة</div>
+        <div class="chip">2) اختيار الباقة</div>
+        <div class="chip">3) إضافات</div>
+        <div class="chip">4) بياناتك</div>
+        <div class="chip">5) إرسال</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section>
+      <div class="grid cols-3">
+        <div class="card choice active" data-type="salla"><h3>متجر سلة</h3><p class="muted">ترتيب كامل + شكل نظيف</p></div>
+        <div class="card choice" data-type="company"><h3>موقع للشركات</h3><p class="muted">واجهة تعريفية تقنع وتتواصل</p></div>
+        <div class="card choice" data-type="portfolio"><h3>بورتفوليو للأفراد</h3><p class="muted">صفحة شخصية أنيقة</p></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="grid cols-3" id="packages"></div>
+    </section>
+
+    <section>
+      <div class="card panel">
+        <div id="bundlebar" class="bundlebar"></div>
+        <h3 style="margin:6px 0 12px">إضافات</h3>
+        <div id="companyPages" class="pages-card" style="display:none">
+          <div class="pages-head">
+            <div class="title">عدد الصفحات الإضافية</div>
+            <div class="pages-meta">
+              <span class="badge">إضافية: <b id="pagesCount">2</b></span>
+              <span class="badge">تكلفة: <b id="pagesPrice">0</b> <img class="sar" src="https://www.sama.gov.sa/ar-sa/Currency/Documents/Saudi_Riyal_Symbol-2.svg" alt="ريال سعودي"></span>
+            </div>
+          </div>
+          <div class="free-note">الصفحة الرئيسية + صفحتان إضافية مجانًا — أي زيادة تُحسب 99 ريال/صفحة</div>
+          <div class="slider" id="sliderWrap">
+            <div class="track"></div>
+            <div class="fill" id="pagesFill"></div>
+            <input id="pagesRange" type="range" min="0" max="10" step="1" value="2" aria-label="الصفحات الإضافية">
+          </div>
+        </div>
+        <div class="addons" id="addons"></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="card panel form">
+        <div>
+          <label>اسمك</label>
+          <input id="name" placeholder="مثال: محمد" />
+        </div>
+        <div>
+          <label>عرّف نشاطك / مجالك</label>
+          <textarea id="notes" placeholder="مثال :
+ بيع دهن العود ومباخر فاخرة
+"></textarea>
+        </div>
+        <div class="total"><span>الإجمالي</span><span id="total">0 <img class="sar" src="https://www.sama.gov.sa/ar-sa/Currency/Documents/Saudi_Riyal_Symbol-2.svg" alt="ريال سعودي"></span></div>
+        <button class="send" id="send">إرسال</button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const waPhone='966580638156';
+
+    /* Packages */
+    const packages={
+      salla:[
+        {id:'s_base',name:'أساسي',price:350,features:['بنرات بسيطة','ترتيب أقسام','صفحات أساسية']},
+        {id:'s_pro',name:'احترافي',price:500,features:['تصميم مخصص','وصف منتجات','ضبط دفع/شحن']},
+        {id:'s_max',name:'متقدم',price:999,features:['تصميم كامل','صور رقمية','إطلاق وتسليم']}
+      ],
+      company:[
+        {id:'c_base',name:'أساسي',price:300,features:['واجهة رئيسية','صفحتان مجانًا','CTA تواصل','سريعة ومتجاوبة']},
+        {id:'c_pro',name:'احترافي',price:650,features:['واجهة رئيسية + صفحتان','أقسام خدمات','صور وبنرات','تحسين بحث أساسي']},
+        {id:'c_max',name:'متقدم',price:1200,features:['هيكل كامل','نموذج تواصل متقدم','إطلاق وتسليم']}
+      ],
+      portfolio:[
+        {id:'p_base',name:'أساسي',price:300,features:['نبذة قوية','روابط تواصل','قسم خدمات بسيط']},
+        {id:'p_pro',name:'احترافي',price:550,features:['معرض أعمال','صور وبنرات','قسم شهادات']},
+        {id:'p_max',name:'متقدم',price:900,features:['تصميم شخصي','مدونة خفيفة','تحسين أساسي']}
+      ]
+    };
+
+    /* Addons */
+    const addonsByService={
+      salla:[
+        {id:'ad_logo',label:'تصميم لوجو',price:150},
+        {id:'ad_banners',label:'بنرات إعلانية إضافية',price:120},
+        {id:'ad_copy',label:'كتابة وصف احترافي للمنتجات',price:180},
+        {id:'ad_photos',label:'تصميم صور للمنتجات الرقمية',price:160},
+        {id:'ad_integr',label:'تكامل شحن/دفع متقدم',price:140}
+      ],
+      company:[
+        {id:'ad_brand',label:'هوية خفيفة (شعار + ألوان)',price:220},
+        {id:'ad_pages',label:'تهيئة صفحات إضافية خاصة',price:70},
+        {id:'ad_copy_c',label:'كتابة محتوى مختصر',price:160},
+        {id:'ad_form',label:'نموذج تواصل متقدم',price:140}
+      ],
+      portfolio:[
+        {id:'ad_logo_p',label:'شعار شخصي خفيف',price:120},
+        {id:'ad_gallery',label:'معرض أعمال متقدم (Business Gallery)',price:180},
+        {id:'ad_refs',label:'قسم شهادات وتوصيات',price:140},
+        {id:'ad_cv',label:'صفحة سيرة ذاتية',price:100}
+      ]
+    };
+
+    /* Pro includes curated; Advanced includes ALL */
+    const includedMap={
+      salla:{ s_pro:['ad_banners','ad_copy'], s_max:'ALL' },
+      company:{ c_pro:['ad_copy_c'], c_max:'ALL' },
+      portfolio:{ p_pro:['ad_logo_p'], p_max:'ALL' }
+    };
+
+    const EXTRA_PAGE_PRICE=99; // لكل صفحة إضافية بعد صفحتين مجانًا
+
+    const pkgWrap=document.getElementById('packages');
+    const addonsWrap=document.getElementById('addons');
+    const totalEl=document.getElementById('total');
+    const bundlebar=document.getElementById('bundlebar');
+
+    const pagesCard=document.getElementById('companyPages');
+    const pagesRange=document.getElementById('pagesRange');
+    const pagesCount=document.getElementById('pagesCount');
+    const pagesPrice=document.getElementById('pagesPrice');
+    const pagesFill=document.getElementById('pagesFill');
+
+    let currentService='salla';
+    let currentPackage=null;
+    let extraPages=2; // الافتراضي يظهر 2 (مجانًا)
+
+    function renderPackages(){
+      pkgWrap.innerHTML=packages[currentService].map(p=>`
+        <label class="card panel choice pkg" data-price="${p.price}" data-id="${p.id}">
+          <input type="radio" name="pkg" value="${p.id}" style="display:none">
+          <div>
+            <h3>${p.name}</h3>
+            <div class="price">${p.price} <img class="sar" src="https://www.sama.gov.sa/ar-sa/Currency/Documents/Saudi_Riyal_Symbol-2.svg" alt="ريال سعودي"></div>
+            <ul style="margin:6px 0 0 18px;color:#cfe9db">${p.features.map(f=>`<li>${f}</li>`).join('')}</ul>
+          </div>
+        </label>`).join('');
+
+      pkgWrap.querySelectorAll('.choice').forEach(c=>{
+        c.addEventListener('click',()=>{
+          // تفعيل الحالة البصرية
+          pkgWrap.querySelectorAll('.choice').forEach(x=>x.classList.remove('active','picked'));
+          c.classList.add('active');
+          // إعادة تشغيل أنيميشن الاختيار
+          c.classList.remove('picked');
+          void c.offsetWidth; // reflow
+          c.classList.add('picked');
+
+          c.querySelector('input').checked=true;
+          currentPackage={id:c.dataset.id,price:parseInt(c.dataset.price,10)};
+          renderAddons();
+          applyIncludedAddons();
+          updateTotal();
+        });
+      });
+      const first=pkgWrap.querySelector('.choice');
+      if(first){first.click();}
+    }
+
+    function renderAddons(){
+      // إعداد السلايدر للشركات
+      if(currentService==='company'){
+        pagesCard.style.display='grid';
+        pagesRange.value = extraPages; // 2 افتراضيًا
+        updatePagesUI();
+      }else{
+        pagesCard.style.display='none';
+      }
+
+      const list=addonsByService[currentService];
+      addonsWrap.innerHTML=list.map(a=>`
+        <div class="addon" data-aid="${a.id}">
+          <input class="chk" type="checkbox" id="${a.id}" data-price="${a.price}">
+          <label class="label-text" for="${a.id}">${a.label}</label>
+          <span class="amt">+ ${a.price} <img class="sar" src="https://www.sama.gov.sa/ar-sa/Currency/Documents/Saudi_Riyal_Symbol-2.svg" alt="ريال سعودي"></span>
+        </div>`).join('');
+
+      addonsWrap.querySelectorAll('input[type="checkbox"]').forEach(cb=>cb.addEventListener('change',updateTotal));
+      bundlebar.classList.remove('show');
+      bundlebar.innerHTML='';
+    }
+
+    function bump(el){
+      el.classList.remove('bump');
+      void el.offsetWidth;
+      el.classList.add('bump');
+    }
+
+    function updatePagesUI(){
+      extraPages = parseInt(pagesRange.value,10)||0;
+      const min = parseInt(pagesRange.min,10), max = parseInt(pagesRange.max,10);
+      const pct = (extraPages-min)/(max-min); // 0..1
+      pagesFill.style.width = (pct*100)+"%"; // يُطابق موضع الثَمب 100%
+      pagesCount.textContent = extraPages;
+      bump(pagesCount);
+      const paid = Math.max(0, extraPages-2); // أول 2 مجانًا
+      const cost = paid*EXTRA_PAGE_PRICE;
+      pagesPrice.textContent = cost;
+    }
+
+    pagesRange?.addEventListener('input',()=>{ updatePagesUI(); updateTotal(); });
+
+    function applyIncludedAddons(){
+      if(!currentPackage) return;
+      const inc = (includedMap[currentService]||{})[currentPackage.id];
+      const includedIds = inc==='ALL' ? (addonsByService[currentService]||[]).map(a=>a.id) : (inc||[]);
+
+      // reset
+      addonsWrap.querySelectorAll('.addon').forEach(row=>{
+        row.classList.remove('included');
+        const cb=row.querySelector('.chk'); const amt=row.querySelector('.amt');
+        cb.disabled=false; cb.checked=false; // default
+        const price = parseInt(cb.dataset.price,10)||0; amt.innerHTML = `+ ${price} <img class="sar" src="https://www.sama.gov.sa/ar-sa/Currency/Documents/Saudi_Riyal_Symbol-2.svg" alt="ريال سعودي">`;
+      });
+
+      if(!includedIds.length){ return updateTotal(); }
+
+      const items=[];
+      includedIds.forEach(id=>{
+        const row=addonsWrap.querySelector(`[data-aid="${id}"]`); if(!row) return;
+        const cb=row.querySelector('.chk'); const amt=row.querySelector('.amt');
+        row.classList.add('included'); cb.checked=true; cb.disabled=true; const base=cb.dataset.price; amt.innerHTML=`<s>+ ${base}</s> + 0 <img class="sar" src="https://www.sama.gov.sa/ar-sa/Currency/Documents/Saudi_Riyal_Symbol-2.svg" alt="ريال سعودي">`;
+        const label=row.querySelector('.label-text').textContent.trim(); items.push(label);
+      });
+
+      bundlebar.innerHTML = `<div class="btitle">🎁 إضافات مشمولة مع هذه الباقة</div><div class="items">${items.map(t=>`<span class="pill">${t}</span>`).join('')}</div>`;
+      bundlebar.classList.add('show');
+      updateTotal();
+    }
+
+    function updateTotal(){
+      let total=currentPackage?currentPackage.price:0;
+      addonsWrap.querySelectorAll('.addon').forEach(row=>{
+        const cb=row.querySelector('.chk'); const price=parseInt(cb.dataset.price,10)||0;
+        if(cb.checked && !cb.disabled){ total += price; }
+      });
+      if(currentService==='company'){
+        const paid = Math.max(0, extraPages-2); total += paid*EXTRA_PAGE_PRICE;
+      }
+      totalEl.innerHTML=`${total} <img class="sar" src="https://www.sama.gov.sa/ar-sa/Currency/Documents/Saudi_Riyal_Symbol-2.svg" alt="ريال سعودي">`;
+    }
+
+    // Switch service
+    document.querySelectorAll('.choice[data-type]').forEach(card=>{
+      card.addEventListener('click',()=>{
+        document.querySelectorAll('.choice[data-type]').forEach(x=>x.classList.remove('active'));
+        card.classList.add('active');
+        currentService=card.dataset.type;
+        renderPackages();
+        renderAddons();
+      });
+    });
+
+    // init
+    renderPackages();
+    renderAddons();
+
+    // Send
+    document.getElementById('send').addEventListener('click',()=>{
+      const name=document.getElementById('name').value.trim();
+      const notes=document.getElementById('notes').value.trim();
+      const svcName={salla:'متجر سلة',company:'موقع شركة',portfolio:'بورتفوليو'}[currentService];
+      const pkg=currentPackage?packages[currentService].find(p=>p.id===currentPackage.id):null;
+      const chosenAddons=Array.from(addonsWrap.querySelectorAll('.addon')).filter(row=>{
+        const cb=row.querySelector('.chk'); return cb.checked; }).map(row=>{
+          const cb=row.querySelector('.chk'); const label=row.querySelector('.label-text').textContent.trim();
+          return `- ${label} (${cb.disabled? 'مشمول': '+'+(cb.dataset.price)})`;
+        }).join('\n');
+
+      let msg=`طلب جديد\n\n`;
+      msg+=`الخدمة: ${svcName}\n`;
+      if(pkg){msg+=`الباقة: ${pkg.name} (${pkg.price})\n`;}
+      if(currentService==='company'){
+        const paid = Math.max(0, extraPages-2); const cost = paid*EXTRA_PAGE_PRICE;
+        msg+=`الصفحات: الرئيسية + ${Math.min(2,extraPages)} مجانا${paid?` + ${paid} إضافية (إجمالي ${extraPages}) — تكلفة ${cost}`:''}\n`;
+      }
+      if(chosenAddons){msg+=`\nإضافات:\n${chosenAddons}\n`;}
+      msg+=`\nالإجمالي: ${totalEl.textContent.trim()}\n`;
+      msg+=`\nالاسم: ${name||'-'}\n`;
+      if(notes){msg+=`\nنبذة عن النشاط: ${notes}\n`;}
+      const url=`https://wa.me/${waPhone}?text=${encodeURIComponent(msg)}`;
+      window.open(url,'_blank');
+    });
+  </script>
+</body>
+</html>
