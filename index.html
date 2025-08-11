@@ -7,97 +7,161 @@
   <meta name="description" content="تصميم مواقع شركات وصفحات شخصية ومتاجر سلة بتصميم فخم وحديث. باقات واضحة وبناء سريع. تواصل واتساب مباشرة." />
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
   <style>
-    :root{--bg:#06110d;--bg2:#08160f;--card:#0b1f17;--line:#143227;--txt:#eef3ef;--muted:#a7bfb3;--brand:#22c55e;--brand2:#10b981;--accent:#84cc16;--radius:18px;--maxw:1180px;--shadow:0 12px 40px rgba(0,0,0,.35)}
+    /* ====== Palette ====== */
+    :root{
+      --bg:#06110d;--bg2:#08160f;--card:#0b1f17;--line:#143227;--txt:#eef3ef;--muted:#a7bfb3;
+      --brand:#22c55e;--brand2:#10b981;--accent:#84cc16;
+      --mint:#d9fbe8;--mint2:#bfe7d2;--mint3:#a3e4c4;
+      --radius:18px;--maxw:1180px;--shadow:0 12px 40px rgba(0,0,0,.35)
+    }
+
     *{box-sizing:border-box}
     html,body{margin:0}
-    body{font-family:'Tajawal',system-ui,-apple-system,Segoe UI,Roboto;line-height:1.7;color:var(--txt);background:linear-gradient(120deg,#06110d 0%,#0a1a13 50%,#08160f 100%);position:relative}
-    body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:conic-gradient(from 200deg at 60% 10%, rgba(34,197,94,.08), transparent 30%, rgba(16,185,129,.06) 55%, transparent 80%);filter:blur(90px);opacity:.55;transform-origin:50% 30%;animation:spin 28s linear infinite}
+    body{font-family:'Tajawal',system-ui,-apple-system,Segoe UI,Roboto;line-height:1.7;color:var(--txt);
+      background:linear-gradient(120deg,#06110d 0%,#0a1a13 50%,#08160f 100%);position:relative}
+
+    /* خلفية خفيفة متناسقة مع البراند */
+    body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+      background:conic-gradient(from 210deg at 60% 10%, rgba(34,197,94,.08), transparent 30%, rgba(16,185,129,.06) 55%, transparent 80%);
+      filter:blur(90px);opacity:.55;transform-origin:50% 30%;animation:spin 28s linear infinite}
+
     a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block}
     .container{max-width:var(--maxw);margin-inline:auto;padding:0 20px}
+
+    /* ====== Nav ====== */
     .nav{position:sticky;top:0;z-index:60;background:rgba(10,14,24,.6);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
     .nav .wrap{height:70px;display:flex;align-items:center;justify-content:space-between}
     .brand{display:flex;align-items:center;gap:10px}
-    .logo-dot{width:14px;height:14px;border-radius:50%;background:conic-gradient(from 200deg, var(--brand), var(--brand2), var(--accent));box-shadow:0 0 20px rgba(14,165,233,.5)}
+    .logo-dot{width:14px;height:14px;border-radius:50%;
+      background:conic-gradient(from 200deg, var(--brand), var(--brand2), var(--accent));
+      box-shadow:0 0 20px rgba(16,185,129,.45)}
     .brand h1{margin:0;font-size:18px;letter-spacing:.2px}
     .menu{display:flex;gap:10px;align-items:center}
-    .menu a{padding:10px 12px;border-radius:999px;color:var(--muted)}
-    .menu a:hover{color:var(--txt);background:rgba(255,255,255,.06)}
-    .cta{padding:10px 16px;border-radius:14px;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;font-weight:800;box-shadow:0 8px 22px rgba(14,165,233,.25);background-size:200% 200%;transition:transform .15s ease;animation:movegrad 7s ease infinite}
-    .cta:hover{transform:translateY(-2px)}
-    .burger{display:none;gap:8px;flex-direction:column;background:transparent;border:1px solid var(--line);border-radius:12px;padding:8px 10px;outline:none;appearance:none;-webkit-appearance:none}
-    .burger span{width:26px;height:2px;background:#bfe7d2;border-radius:2px}
+    .menu a{padding:10px 12px;border-radius:999px;color:var(--muted);transition:background .2s,color .2s,transform .18s}
+    .menu a:hover{color:var(--txt);background:rgba(255,255,255,.06);transform:translateY(-1px)}
+
+    .cta{padding:10px 16px;border-radius:14px;background:linear-gradient(135deg,var(--brand),var(--brand2));
+      color:#03150f;font-weight:800;box-shadow:0 8px 22px rgba(16,185,129,.25);background-size:200% 200%;
+      transition:transform .15s ease,filter .25s ease;animation:movegrad 7s ease infinite, pulse 2.4s ease-in-out infinite}
+    .cta:hover{transform:translateY(-2px);filter:brightness(1.06)}
+
+    .burger{display:none;gap:8px;flex-direction:column;background:transparent;border:1px solid var(--line);border-radius:12px;padding:8px 10px;outline:none}
+    .burger span{width:26px;height:2px;background:var(--mint2);border-radius:2px}
+    .burger:hover{background:rgba(255,255,255,.06)}
     .mobile{display:none}
-    @media (max-width:900px){.menu{display:none}.burger{display:flex}.mobile{display:none;position:fixed;inset:70px 0 auto 0;background:rgba(10,14,24,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}.mobile a{display:block;padding:16px 20px;border-top:1px solid rgba(255,255,255,.04);color:#d9fbe8}.mobile .cta{display:block;margin:12px 20px}}
+    @media (max-width:900px){
+      .menu{display:none}
+      .burger{display:flex}
+      .mobile{display:none;position:fixed;inset:70px 0 auto 0;background:rgba(10,14,24,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+      .mobile a{display:block;padding:16px 20px;border-top:1px solid rgba(255,255,255,.04);color:var(--mint)}
+      .mobile .cta{display:block;margin:12px 20px}
+    }
+
+    /* ====== Hero ====== */
     .hero{position:relative}
-    .hero .wrap{display:grid;gap:28px;align-items:center;padding:60px 0}
+    $1
+
+    /* Center hero content exactly like the original */
+    .hero-center{display:grid;place-items:center;padding:90px 0 70px}
+    .hero-block{max-width:820px;margin-inline:auto;text-align:center}
     @media (min-width:940px){.hero .wrap{padding:90px 0 70px}}
-    .bigname{font-size:72px;font-weight:800;letter-spacing:1.5px;margin:0 0 6px;background:linear-gradient(90deg,#ecfdf5 0%,#a7f3d0 35%,#34d399 50%,#a7f3d0 65%,#ecfdf5 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 8px 24px rgba(16,185,129,.18));text-transform:uppercase}
+
+    .bigname{font-size:72px;font-weight:800;letter-spacing:1.5px;margin:0 0 6px;background:linear-gradient(90deg,#ecfdf5 0%,#a7f3d0 35%,#34d399 50%,#a7f3d0 65%,#ecfdf5 100%);-webkit-background-clip:text;background-clip:text;color:transparent;background-size:180% 100%;filter:drop-shadow(0 8px 24px rgba(16,185,129,.18));text-transform:uppercase;animation:sheen 8s linear infinite}
     @media (max-width:600px){.bigname{font-size:40px}}
+
     .title{font-size:44px;line-height:1.15;margin:8px 0 10px}
     @media (max-width:600px){.title{font-size:32px}}
-    .title .grad{background:linear-gradient(90deg,#eafaf3 0%,#86efac 45%,#bbf7d0 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
-    .subtitle{color:var(--muted);font-size:18px;margin:0 0 24px}
-    .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
-    .ghost{padding:10px 16px;border:1px solid var(--line);border-radius:14px;color:#e6ebff}
-    .ghost:hover{background:rgba(255,255,255,.05)}
-    .highs{display:grid;gap:12px;margin-top:8px}
-    @media (min-width:780px){.highs{grid-template-columns:repeat(3,1fr)}}
-    .chip{display:flex;align-items:center;gap:10px;padding:12px 14px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.03);color:#cbd6ff}
+    .title .grad{background:linear-gradient(90deg,#eafaf3 0%,#86efac 45%,#bbf7d0 100%);
+      -webkit-background-clip:text;background-clip:text;color:transparent}
+
+    .subtitle{color:var(--mint2);font-size:18px;margin:0 0 24px}
+
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+
+    /* Chip colors (lead + default) متناسقة مع البراند */
+    .chip{display:flex;align-items:center;gap:10px;padding:10px 14px;border:1px solid #1c513b;border-radius:999px;
+      background:linear-gradient(135deg,rgba(34,197,94,.16),rgba(16,185,129,.10));color:#e9fff5;box-shadow:0 6px 18px rgba(16,185,129,.12)}
+    .chip.lead{width:fit-content;margin:0 auto 10px;color:#eafff6}
+
     section{padding:64px 0;border-top:1px solid rgba(255,255,255,.05)}
     .sec-title{font-size:28px;margin:0 0 10px}
     .sec-desc{color:var(--muted);margin:0 0 24px}
+
     .grid{display:grid;gap:18px}
     @media (min-width:900px){.grid.cols-3{grid-template-columns:repeat(3,1fr)}.grid.cols-2{grid-template-columns:repeat(2,1fr)}}
-    .card{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
-    .svc{padding:20px;transition:transform .2s ease, border-color .2s ease}
-    .svc:hover{transform:translateY(-3px);border-color:#1f7a55}
-    .pill{display:inline-block;margin:8px 6px 0 0;padding:6px 10px;border:1px solid var(--line);border-radius:999px;color:#d7ddff;font-size:13px}
+
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);position:relative;overflow:hidden}
+
+    /* ====== Services cards motion ====== */
+    .svc{padding:20px;transition:transform .22s ease, border-color .22s ease, box-shadow .22s ease}
+    .svc::after{content:"";position:absolute;inset:-2px;border-radius:inherit;pointer-events:none;opacity:0;filter:blur(20px);
+      background:conic-gradient(from 210deg,rgba(34,197,94,.35),rgba(16,185,129,.25),rgba(132,204,22,.2),transparent 65%);
+      transition:opacity .35s ease}
+    .svc:hover{transform:translateY(-4px) scale(1.01);border-color:#1f7a55;box-shadow:0 14px 40px rgba(0,0,0,.45)}
+    .svc:hover::after{opacity:.55}
+
+    /* Pills (features) ألوان خضراء هادئة */
+    .pill{display:inline-block;margin:8px 6px 0 0;padding:6px 10px;border:1px solid #1c513b;border-radius:999px;
+      color:#eafff6;font-size:13px;background:linear-gradient(180deg,rgba(34,197,94,.10),rgba(34,197,94,.06))}
+
+    /* ====== Pricing ====== */
     .pricing{display:grid;gap:18px}
     @media (min-width:900px){.pricing{grid-template-columns:repeat(3,1fr)}}
-    .price-card{padding:22px;position:relative;isolation:isolate;border:1px solid var(--line);overflow:hidden;transition:transform .2s ease, box-shadow .2s ease}
-    .price-card::before{content:"";position:absolute;inset:-1px;border-radius:inherit;background:linear-gradient(135deg, rgba(34,197,94,.35), rgba(16,185,129,.25), rgba(132,204,22,.20));filter:blur(22px);opacity:.45;z-index:0;transition:opacity .25s ease}
+    .price-card{padding:22px;position:relative;isolation:isolate;border:1px solid var(--line);overflow:hidden;transition:transform .22s ease, box-shadow .22s ease, border-color .22s}
+    .price-card::before{content:"";position:absolute;inset:-1px;border-radius:inherit;background:linear-gradient(135deg, rgba(34,197,94,.35), rgba(16,185,129,.25), rgba(132,204,22,.20));filter:blur(22px);opacity:.42;z-index:0;transition:opacity .25s ease}
     .price-card:hover::before{opacity:.75}
-    .price-card:hover{transform:translateY(-4px);box-shadow:0 14px 40px rgba(0,0,0,.45)}
+    .price-card:hover{transform:translateY(-4px);box-shadow:0 14px 40px rgba(0,0,0,.45);border-color:#1f7a55}
+    .price-card.picked{animation:pickPop .28s cubic-bezier(.2,.65,.2,1.4)}
     .price-card>*{position:relative;z-index:1}
+
     .price{font-size:36px;margin:8px 0 2px;background:linear-gradient(90deg,#cfe9db,#22c55e,#86efac);-webkit-background-clip:text;background-clip:text;color:transparent}
     .price small{font-size:14px;color:var(--muted)}
     .pc-list{margin:10px 0 16px;padding:0 0 0 16px}
-    .pc-list li{margin:6px 0;color:#dfe5ff}
+    .pc-list li{margin:6px 0;color:var(--mint)}
+
+    /* ====== Contact ====== */
     .contact{display:grid;gap:18px}
     @media (min-width:860px){.contact{grid-template-columns:1.2fr .8fr}}
     .panel{padding:20px}
     .whats{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:14px;background:#132a1f;border:1px solid #274a38}
-    .whats svg{flex:0 0 auto}
-    footer{padding:26px 0;color:#99a3c7;border-top:1px solid var(--line)}
+
+    footer{padding:26px 0;color:#a5bfb3;border-top:1px solid var(--line)}
+
+    /* ====== Inputs ====== */
+    .msg{width:100%;padding:14px 16px;border-radius:16px;border:1px solid var(--line);
+      background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));color:#eafff5;min-height:120px;resize:vertical;outline:none;
+      box-shadow:inset 0 0 0 1px rgba(34,197,94,.1),0 10px 30px rgba(0,0,0,.25);transition:border-color .2s ease,box-shadow .2s ease;font-family:inherit}
+    .msg::placeholder{color:var(--mint2);font-family:inherit}
+    .msg:focus{border-color:#1f7a55;box-shadow:inset 0 0 0 1px rgba(34,197,94,.28),0 0 0 6px rgba(16,185,129,.12)}
+
+    .send{margin-top:12px;padding:12px 18px;border-radius:14px;font-weight:800;font-family:inherit;font-size:16px;letter-spacing:.2px;border:1px solid #274a38;background:linear-gradient(135deg,#1a3a2c,#132a1f);color:#eafff5;box-shadow:0 10px 30px rgba(16,185,129,.25);transition:transform .15s ease,filter .2s ease}
+    .send:hover{transform:translateY(-1px);filter:brightness(1.05)}
+    .send:active{transform:translateY(0) scale(.99)}
+
+    .sar{display:inline-block;width:.86em;height:.86em;vertical-align:-.14em;margin:0 .1em;filter:invert(66%) sepia(24%) saturate(820%) hue-rotate(86deg) brightness(95%) contrast(92%);opacity:.95}
+
+    /* ====== Reveal + motion ====== */
     @keyframes movegrad{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}
     @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-    @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
     @keyframes spin{to{transform:rotate(1turn)}}
+    @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(16,185,129,.45)}70%{box-shadow:0 0 0 18px rgba(16,185,129,0)}100%{box-shadow:0 0 0 0 rgba(16,185,129,0)}}
+    @keyframes sheen{0%{background-position:0% 50%}100%{background-position:180% 50%}}
+    @keyframes pickPop{0%{transform:scale(1)}60%{transform:scale(1.02)}100%{transform:scale(1)}}
+
     .reveal{opacity:0;transform:translateY(14px)}
     .reveal.show{animation:fadeUp .7s ease forwards}
-    @media (prefers-reduced-motion:reduce){.reveal,.blob,.cta{animation:none;transition:none}}
-  html{scroll-behavior:smooth}
-    header,section{scroll-margin-top:86px}
-    .hero .cta{padding:14px 22px;font-size:18px;animation:movegrad 7s ease infinite, pulse 2.4s ease-in-out infinite}
-    @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(14,165,233,.45)}70%{box-shadow:0 0 0 18px rgba(14,165,233,0)}100%{box-shadow:0 0 0 0 rgba(14,165,233,0)}}
-    .svc:hover{transform:translateY(-3px) scale(1.01)}
-    .floating-cta{position:fixed;left:50%;transform:translateX(-50%);bottom:16px;z-index:70;display:none;align-items:center;justify-content:center;padding:14px 22px;border-radius:16px;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;font-weight:800;box-shadow:0 10px 30px rgba(14,165,233,.35)}
+
+    /* Floating CTA */
+    .floating-cta{position:fixed;left:50%;transform:translateX(-50%);bottom:16px;z-index:70;display:none;align-items:center;justify-content:center;padding:14px 22px;border-radius:16px;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#03150f;font-weight:800;box-shadow:0 10px 30px rgba(16,185,129,.35)}
     @media (max-width:900px){.floating-cta{display:flex}}
-  .hero-center{display:grid;place-items:center;padding:90px 0 70px}
-    .hero-block{text-align:center;max-width:820px;margin-inline:auto}
-    .hero-actions{justify-content:center}
-    .chip.lead{width:fit-content;margin:0 auto 10px}
-  .burger:hover{background:rgba(255,255,255,.06)}
-  
-  .msg{width:100%;padding:14px 16px;border-radius:16px;border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));color:#eafff5;min-height:120px;resize:vertical;outline:none;box-shadow:inset 0 0 0 1px rgba(34,197,94,.1),0 10px 30px rgba(0,0,0,.25);transition:border-color .2s ease,box-shadow .2s ease;font-family:inherit}
-  .msg::placeholder{color:#bfe7d2;font-family:inherit}
-  .msg:focus{border-color:#1f7a55;box-shadow:inset 0 0 0 1px rgba(34,197,94,.28),0 0 0 6px rgba(16,185,129,.12)}
-  .send{margin-top:12px;padding:12px 18px;border-radius:14px;font-weight:800;font-family:inherit;font-size:16px;letter-spacing:.2px;border:1px solid #274a38;background:linear-gradient(135deg,#1a3a2c,#132a1f);color:#eafff5;box-shadow:0 10px 30px rgba(16,185,129,.25);transition:transform .15s ease,filter .2s ease}
-  .send:hover{transform:translateY(-1px);filter:brightness(1.05)}
-  .send:active{transform:translateY(0) scale(.99)}
-  
-  .sar{display:inline-block;width:.86em;height:.86em;vertical-align:-.14em;margin:0 .1em;filter:invert(66%) sepia(24%) saturate(820%) hue-rotate(86deg) brightness(95%) contrast(92%);opacity:.95}
+
+    /* Smooth scroll */
+    html{scroll-behavior:smooth}
+    header,section{scroll-margin-top:86px}
+
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion:reduce){.reveal,.cta{animation:none;transition:none}}
   </style>
 </head>
 <body>
@@ -112,7 +176,7 @@
         <a href="#services">الخدمات</a>
         <a href="#pricing">الباقات</a>
         <a href="#contact">تواصل</a>
-        <!-- تغييرات: زر اطلب الآن يذهب إلى order.html -->
+        <!-- زر اطلب الآن يذهب إلى order.html -->
         <a class="cta" href="order.html">اطلب الآن</a>
       </div>
       <button class="burger" id="burger" aria-label="قائمة"><span></span><span></span><span></span></button>
@@ -122,7 +186,6 @@
       <a href="#services">الخدمات</a>
       <a href="#pricing">الباقات</a>
       <a href="#contact">تواصل</a>
-      <!-- تغييرات: زر اطلب الآن (قائمة الجوال) يذهب إلى order.html -->
       <a class="cta" href="order.html">اطلب الآن</a>
     </div>
   </nav>
@@ -133,11 +196,9 @@
         <div class="chip lead">لغة بسيطة • نتيجة واضحة • تصميم يلفت النظر</div>
         <div class="bigname reveal">أسامة</div>
         <h2 class="title reveal"><span class="grad">مواقع تُبهر</span> عميلك وتسهّل عليك الشرح</h2>
-        <p class="subtitle reveal">أنجز لك موقع شركة أنيق أو متجر سلة مرتب. نركز على الشكل، البساطة، والسرعة — بدون كلام تقني كثير.</p>
+        <p class="subtitle reveal">أصمم لك موقع شركة أو متجر سلة بتصميم فخم، بسيط، وسريع.</p>
         <div class="hero-actions reveal">
-          <!-- تغييرات: زر اطلب الآن (الهيرو) يذهب إلى order.html -->
           <a class="cta" href="order.html">اطلب الآن</a>
-          
         </div>
       </div>
     </div>
@@ -241,10 +302,7 @@
         <p class="sec-desc">للأسئلة السريعة أو عرض السعر — اكتب رسالتك واضغط إرسال.</p>
         <textarea id="waMsg" class="msg" placeholder="مثال: أحتاج موقع شركة من 3 صفحات وصفحة تواصل. الميزانية 800–1200."></textarea>
         <button id="sendWa" type="button" class="send">إرسال</button>
-        
       </div>
-      
-    
     </div>
   </section>
 
@@ -254,17 +312,40 @@
       <span class="muted">تصميم داكن بفخامة حديثة • جاهز للنشر على Vercel</span>
     </div>
   </footer>
-  <!-- تغييرات: زر اطلب الآن العائم يذهب إلى order.html -->
+
+  <!-- زر اطلب الآن العائم -->
   <a class="floating-cta" href="order.html">اطلب الآن</a>
+
   <script>
+    // لا منطق جديد، نفس المنطق السابق تمامًا
     const b=document.getElementById('burger');
     const m=document.getElementById('mobile');
     if(b&&m){b.addEventListener('click',()=>{const open=m.style.display==='block';m.style.display=open?'none':'block'})}
-    const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');obs.unobserve(e.target)}})},{threshold:0.12});
+
+    const obs=new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');obs.unobserve(e.target)}})
+    },{threshold:0.12});
     document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-    document.querySelectorAll('.menu a[href^="#"], #mobile a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const id=a.getAttribute('href').slice(1);const el=document.getElementById(id);if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth',block:'start'});if(m){m.style.display='none';}}});});
-    const sendBtn=document.getElementById('sendWa');const msgEl=document.getElementById('waMsg');const waPhone='966580638156';
-    if(sendBtn&&msgEl){sendBtn.addEventListener('click',()=>{const t=msgEl.value.trim()||'مرحبا أسامة، أحتاج عرض سعر.';const url=`https://wa.me/${waPhone}?text=${encodeURIComponent(t)}`;window.open(url,'_blank');});}
+
+    document.querySelectorAll('.menu a[href^="#"], #mobile a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',e=>{const id=a.getAttribute('href').slice(1);const el=document.getElementById(id);if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth',block:'start'});if(m){m.style.display='none';}}});
+    });
+
+    const sendBtn=document.getElementById('sendWa');
+    const msgEl=document.getElementById('waMsg');
+    const waPhone='966580638156';
+    if(sendBtn&&msgEl){
+      sendBtn.addEventListener('click',()=>{
+        const t=msgEl.value.trim()||'مرحبا أسامة، أحتاج عرض سعر.';
+        const url=`https://wa.me/${waPhone}?text=${encodeURIComponent(t)}`;
+        window.open(url,'_blank');
+      });
+    }
+
+    // لمسة: عند النقر على بطاقة سعر خليها تعطي نبضة خفيفة (مو منطق، مجرد موشن بصري)
+    document.querySelectorAll('.price-card').forEach(c=>{
+      c.addEventListener('click',()=>{c.classList.remove('picked');void c.offsetWidth;c.classList.add('picked');});
+    });
   </script>
 </body>
 </html>
