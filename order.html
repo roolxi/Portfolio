@@ -125,6 +125,17 @@
     @keyframes bump{0%{transform:translateY(0) scale(1)}40%{transform:translateY(-2px) scale(1.08)}100%{transform:translateY(0) scale(1)}}
 
     @keyframes fadeSlide{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+
+    .pages-card{ position:relative; z-index:2; }
+    .addons{ position:relative; z-index:1; }
+
+/* خفّف تداخل السلايدر: ما يستقبل كلك إلا على المسار */
+    .slider{ position:relative; height:32px; pointer-events:none; }
+    .slider .track, .slider .fill{ pointer-events:none; }
+    .slider input[type=range]{ pointer-events:auto; }
+
+    /* احتياط: لا يمتد أي عنصر مطلق خارج الكرت */
+    .pages-card, .addon{ overflow:hidden; }
   </style>
 </head>
 <body>
@@ -324,6 +335,17 @@
           <label class="label-text" for="${a.id}">${a.label}</label>
           <span class="amt">+ ${a.price} <img class="sar" src="https://www.sama.gov.sa/ar-sa/Currency/Documents/Saudi_Riyal_Symbol-2.svg" alt="ريال سعودي"></span>
         </div>`).join('');
+        // خلّي صف الإضافة كامل يشتغل كبـ زر يبدّل الشيك بوكس
+        addonsWrap.querySelectorAll('.addon').forEach(row=>{
+        const cb = row.querySelector('.chk');
+        row.addEventListener('click', (e)=>{
+            if(e.target === cb) return;   // إذا ضغط مباشرة على الـinput نتركه
+            if(cb.disabled) return;        // الإضافات المشمولة مع الباقة تظل مقفلة (طبيعي)
+            cb.checked = !cb.checked;
+            updateTotal();
+        });
+        });
+
 
       addonsWrap.querySelectorAll('input[type="checkbox"]').forEach(cb=>cb.addEventListener('change',updateTotal));
       bundlebar.classList.remove('show');
