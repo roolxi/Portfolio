@@ -1,402 +1,155 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>osama | مواقع شركات ومتاجر سلة</title>
-  <meta name="description" content="تصميم مواقع شركات وصفحات شخصية ومتاجر سلة بتصميم فخم وحديث. باقات واضحة وبناء سريع. تواصل واتساب مباشرة." />
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>اسامه الحارثي</title>
+
+  <!-- Arabic font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa+Ink:wght@400;700&family=Reem+Kufi+Fun:wght@400;700&display=swap" rel="stylesheet">
+
   <style>
-    /* ====== Palette ====== */
     :root{
-      --bg:#06110d;--bg2:#08160f;--card:#0b1f17;--line:#143227;--txt:#eef3ef;--muted:#a7bfb3;
-      --brand:#22c55e;--brand2:#10b981;--accent:#84cc16;
-      --mint:#d9fbe8;--mint2:#bfe7d2;--mint3:#a3e4c4;
-      --radius:18px;--maxw:1180px;--shadow:0 12px 40px rgba(0,0,0,.35)
+      --bg1:#070a12;
+      --bg2:#0b1224;
+      --gold1:#fff3c4;
+      --gold2:#f7d36a;
+      --gold3:#caa24c;
     }
 
-    *{box-sizing:border-box}
-    html,body{margin:0}
-    body{font-family:'Tajawal',system-ui,-apple-system,Segoe UI,Roboto;line-height:1.7;color:var(--txt);
-      background:linear-gradient(120deg,#06110d 0%,#0a1a13 50%,#08160f 100%);position:relative}
+    *{ box-sizing: border-box; }
+    html,body{ height:100%; margin:0; }
 
-    /* خلفية خفيفة متناسقة مع البراند */
-    /* خلفية متحركة أوضح */
-    /* طبقة توهج قوية جداً مع دوران أسرع */
-    /* طبقة التوهج الرئيسية بنفس الألوان القديمة لكن أوضح حركة */
-    body::after{
-    content:"";
-    position:fixed; inset:-10% -10%; pointer-events:none; z-index:-1;
-    background:
-        radial-gradient(650px 420px at 18% 22%, rgba(34,197,94,.12), transparent 60%),
-        radial-gradient(520px 360px at 82% 28%, rgba(132,204,22,.10), transparent 62%),
-        radial-gradient(780px 520px at 50% 78%, rgba(16,185,129,.09), transparent 64%),
-        conic-gradient(from 210deg at 60% 12%, rgba(34,197,94,.12), transparent 30%, rgba(16,185,129,.10) 58%, transparent 80%);
-    filter:blur(45px) saturate(110%);
-    opacity:.7;
-    transform:scale(1.25);
-    transform-origin:50% 35%;
-    will-change:transform, opacity;
-    animation:spin 20s linear infinite;
+    body{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:
+        radial-gradient(1200px 600px at 50% 35%, rgba(255, 210, 110, .14), transparent 60%),
+        radial-gradient(900px 500px at 15% 80%, rgba(120, 170, 255, .10), transparent 55%),
+        linear-gradient(160deg, var(--bg1), var(--bg2));
+      overflow:hidden;
+      font-family: "Reem Kufi Fun", system-ui, -apple-system, "Segoe UI", Arial;
+      padding: 24px;
     }
 
-    /* طبقة حركة إضافية بنفس اللون ولكن أهدى */
+    /* subtle stars */
     body::before{
-    content:"";
-    position:fixed; inset:-20%; pointer-events:none; z-index:-1;
-    background:
-        repeating-conic-gradient(
-        from 0deg at 55% 25%,
-        rgba(34,197,94,.10) 0deg 22deg,
-        transparent 22deg 360deg
-        );
-    filter:blur(55px);
-    opacity:.55;
-    transform:rotate(0deg) scale(1.2);
-    transform-origin:55% 25%;
-    will-change:transform;
-    animation:sweep 14s linear infinite;
+      content:"";
+      position:fixed;
+      inset:-40%;
+      background:
+        radial-gradient(circle, rgba(255,255,255,.10) 0 1px, transparent 2px) 0 0/70px 70px,
+        radial-gradient(circle, rgba(255,255,255,.07) 0 1px, transparent 2px) 30px 30px/90px 90px;
+      transform: rotate(8deg);
+      pointer-events:none;
+      opacity:.35;
     }
 
+    .frame{
+      position:relative;
+      width:min(980px, 96vw);
+      padding: clamp(30px, 6vw, 70px) clamp(22px, 5vw, 60px);
+      border-radius: 26px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow:
+        0 30px 80px rgba(0,0,0,.55),
+        inset 0 1px 0 rgba(255,255,255,.10);
+      backdrop-filter: blur(10px);
+    }
+
+    .frame::after{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      border-radius: 28px;
+      padding: 2px;
+      background: linear-gradient(120deg,
+        rgba(255,210,110,.35),
+        rgba(255,255,255,.10),
+        rgba(120,170,255,.18)
+      );
+      -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events:none;
+      opacity:.9;
+    }
+
+    h1{
+      margin: 0;
+      text-align:center;
+      line-height: 1.05;
+      font-family: "Aref Ruqaa Ink", serif;
+      font-weight: 700;
+      font-size: clamp(48px, 8vw, 120px);
+      letter-spacing: 0.5px;
+
+      background: linear-gradient(135deg, var(--gold1), var(--gold2), var(--gold3));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+
+      text-shadow:
+        0 10px 30px rgba(0,0,0,.55),
+        0 2px 0 rgba(255,255,255,.08);
+      filter: drop-shadow(0 18px 35px rgba(255, 210, 110, .12));
+    }
+
+    .sub{
+      margin-top: 18px;
+      text-align:center;
+      font-size: clamp(14px, 2.2vw, 18px);
+      color: rgba(255,255,255,.70);
+      letter-spacing: .3px;
+    }
+
+    /* shine sweep */
+    .shine{
+      position:absolute;
+      inset:0;
+      border-radius: 26px;
+      overflow:hidden;
+      pointer-events:none;
+    }
+    .shine::before{
+      content:"";
+      position:absolute;
+      top:-30%;
+      left:-60%;
+      width: 55%;
+      height: 160%;
+      transform: rotate(18deg);
+      background: linear-gradient(90deg,
+        transparent,
+        rgba(255,255,255,.12),
+        transparent
+      );
+      animation: sweep 3.2s ease-in-out infinite;
+      opacity:.55;
+    }
     @keyframes sweep{
-    to{ transform:rotate(360deg) scale(1.2); }
+      0%{ transform: translateX(0) rotate(18deg); opacity:.0; }
+      20%{ opacity:.55; }
+      50%{ opacity:.35; }
+      100%{ transform: translateX(260%) rotate(18deg); opacity:0; }
     }
 
-
-
-
-
-    a{color:inherit;text-decoration:none}
-    img{max-width:100%;display:block}
-    .container{max-width:var(--maxw);margin-inline:auto;padding:0 20px}
-
-    /* ====== Nav ====== */
-    .nav{position:sticky;top:0;z-index:60;background:rgba(10,14,24,.6);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-    .nav .wrap{height:70px;display:flex;align-items:center;justify-content:space-between}
-    .brand{display:flex;align-items:center;gap:10px}
-    .logo-dot{width:14px;height:14px;border-radius:50%;
-      background:conic-gradient(from 200deg, var(--brand), var(--brand2), var(--accent));
-      box-shadow:0 0 20px rgba(16,185,129,.45)}
-    .brand h1{margin:0;font-size:18px;letter-spacing:.2px}
-    .menu{display:flex;gap:10px;align-items:center}
-    .menu a{padding:10px 12px;border-radius:999px;color:var(--muted);transition:background .2s,color .2s,transform .18s}
-    .menu a:hover{color:var(--txt);background:rgba(255,255,255,.06);transform:translateY(-1px)}
-
-    .cta{padding:10px 16px;border-radius:14px;background:linear-gradient(135deg,var(--brand),var(--brand2));
-      color:#03150f;font-weight:800;box-shadow:0 8px 22px rgba(16,185,129,.25);background-size:200% 200%;
-      transition:transform .15s ease,filter .25s ease;animation:movegrad 7s ease infinite, pulse 2.4s ease-in-out infinite}
-    .cta:hover{transform:translateY(-2px);filter:brightness(1.06)}
-
-    .burger{display:none;gap:8px;flex-direction:column;background:transparent;border:1px solid var(--line);border-radius:12px;padding:8px 10px;outline:none}
-    .burger span{width:26px;height:2px;background:var(--mint2);border-radius:2px}
-    .burger:hover{background:rgba(255,255,255,.06)}
-    .mobile{display:none}
-    @media (max-width:900px){
-      .menu{display:none}
-      .burger{display:flex}
-      .mobile{display:none;position:fixed;inset:70px 0 auto 0;background:rgba(10,14,24,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
-      .mobile a{display:block;padding:16px 20px;border-top:1px solid rgba(255,255,255,.04);color:var(--mint)}
-      .mobile .cta{display:block;margin:12px 20px}
-    }
-
-    /* ====== Hero ====== */
-    .hero{position:relative}
-    
-
-    /* Center hero content exactly like the original */
-    .hero-center{display:grid;place-items:center;padding:90px 0 70px}
-    .hero-block{max-width:820px;margin-inline:auto;text-align:center}
-    @media (min-width:940px){.hero .wrap{padding:90px 0 70px}}
-
-    .bigname{font-size:72px;font-weight:800;letter-spacing:1.5px;margin:0 0 6px;background:linear-gradient(90deg,#ecfdf5 0%,#a7f3d0 35%,#34d399 50%,#a7f3d0 65%,#ecfdf5 100%);-webkit-background-clip:text;background-clip:text;color:transparent;background-size:180% 100%;filter:drop-shadow(0 8px 24px rgba(16,185,129,.18));text-transform:uppercase;animation:sheen 8s linear infinite}
-    @media (max-width:600px){.bigname{font-size:40px}}
-
-    .title{font-size:44px;line-height:1.15;margin:8px 0 10px}
-    @media (max-width:600px){.title{font-size:32px}}
-    .title .grad{background:linear-gradient(90deg,#eafaf3 0%,#86efac 45%,#bbf7d0 100%);
-      -webkit-background-clip:text;background-clip:text;color:transparent}
-
-    .subtitle{color:var(--mint2);font-size:18px;margin:0 0 24px}
-
-    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
-
-    /* Chip colors (lead + default) متناسقة مع البراند */
-    .chip{display:flex;align-items:center;gap:10px;padding:10px 14px;border:1px solid #1c513b;border-radius:999px;
-      background:linear-gradient(135deg,rgba(34,197,94,.16),rgba(16,185,129,.10));color:#e9fff5;box-shadow:0 6px 18px rgba(16,185,129,.12)}
-    .chip.lead{width:fit-content;margin:0 auto 10px;color:#eafff6}
-
-    section{padding:64px 0;border-top:1px solid rgba(255,255,255,.05)}
-    .sec-title{font-size:28px;margin:0 0 10px}
-    .sec-desc{color:var(--muted);margin:0 0 24px}
-
-    .grid{display:grid;gap:18px}
-    @media (min-width:900px){.grid.cols-3{grid-template-columns:repeat(3,1fr)}.grid.cols-2{grid-template-columns:repeat(2,1fr)}}
-
-    .card{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);position:relative;overflow:hidden}
-
-    /* ====== Services cards motion ====== */
-    .svc{padding:20px;transition:transform .22s ease, border-color .22s ease, box-shadow .22s ease}
-    .svc::after{content:"";position:absolute;inset:-2px;border-radius:inherit;pointer-events:none;opacity:0;filter:blur(20px);
-      background:conic-gradient(from 210deg,rgba(34,197,94,.35),rgba(16,185,129,.25),rgba(132,204,22,.2),transparent 65%);
-      transition:opacity .35s ease}
-    .svc:hover{transform:translateY(-4px) scale(1.01);border-color:#1f7a55;box-shadow:0 14px 40px rgba(0,0,0,.45)}
-    .svc:hover::after{opacity:.55}
-
-    /* Pills (features) ألوان خضراء هادئة */
-    .pill{display:inline-block;margin:8px 6px 0 0;padding:6px 10px;border:1px solid #1c513b;border-radius:999px;
-      color:#eafff6;font-size:13px;background:linear-gradient(180deg,rgba(34,197,94,.10),rgba(34,197,94,.06))}
-
-    /* ====== Pricing ====== */
-    .pricing{display:grid;gap:18px}
-    @media (min-width:900px){.pricing{grid-template-columns:repeat(3,1fr)}}
-    .price-card{padding:22px;position:relative;isolation:isolate;border:1px solid var(--line);overflow:hidden;transition:transform .22s ease, box-shadow .22s ease, border-color .22s}
-    .price-card::before{content:"";position:absolute;inset:-1px;border-radius:inherit;background:linear-gradient(135deg, rgba(34,197,94,.35), rgba(16,185,129,.25), rgba(132,204,22,.20));filter:blur(22px);opacity:.42;z-index:0;transition:opacity .25s ease}
-    .price-card:hover::before{opacity:.75}
-    .price-card:hover{transform:translateY(-4px);box-shadow:0 14px 40px rgba(0,0,0,.45);border-color:#1f7a55}
-    .price-card.picked{animation:pickPop .28s cubic-bezier(.2,.65,.2,1.4)}
-    .price-card>*{position:relative;z-index:1}
-
-    .price{font-size:36px;margin:8px 0 2px;background:linear-gradient(90deg,#cfe9db,#22c55e,#86efac);-webkit-background-clip:text;background-clip:text;color:transparent}
-    .price small{font-size:14px;color:var(--muted)}
-    .pc-list{margin:10px 0 16px;padding:0 0 0 16px}
-    .pc-list li{margin:6px 0;color:var(--mint)}
-
-    /* ====== Contact ====== */
-    .contact{display:grid;gap:18px}
-    @media (min-width:860px){.contact{grid-template-columns:1.2fr .8fr}}
-    .panel{padding:20px}
-    .whats{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:14px;background:#132a1f;border:1px solid #274a38}
-
-    footer{padding:26px 0;color:#a5bfb3;border-top:1px solid var(--line)}
-
-    /* ====== Inputs ====== */
-    .msg{width:100%;padding:14px 16px;border-radius:16px;border:1px solid var(--line);
-      background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));color:#eafff5;min-height:120px;resize:vertical;outline:none;
-      box-shadow:inset 0 0 0 1px rgba(34,197,94,.1),0 10px 30px rgba(0,0,0,.25);transition:border-color .2s ease,box-shadow .2s ease;font-family:inherit}
-    .msg::placeholder{color:var(--mint2);font-family:inherit}
-    .msg:focus{border-color:#1f7a55;box-shadow:inset 0 0 0 1px rgba(34,197,94,.28),0 0 0 6px rgba(16,185,129,.12)}
-
-    .send{margin-top:12px;padding:12px 18px;border-radius:14px;font-weight:800;font-family:inherit;font-size:16px;letter-spacing:.2px;border:1px solid #274a38;background:linear-gradient(135deg,#1a3a2c,#132a1f);color:#eafff5;box-shadow:0 10px 30px rgba(16,185,129,.25);transition:transform .15s ease,filter .2s ease}
-    .send:hover{transform:translateY(-1px);filter:brightness(1.05)}
-    .send:active{transform:translateY(0) scale(.99)}
-
-    .sar{display:inline-block;width:.86em;height:.86em;vertical-align:-.14em;margin:0 .1em;filter:invert(66%) sepia(24%) saturate(820%) hue-rotate(86deg) brightness(95%) contrast(92%);opacity:.95}
-
-    /* ====== Reveal + motion ====== */
-    @keyframes movegrad{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}
-    @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-    @keyframes spin{to{transform:rotate(1turn)}}
-    @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(16,185,129,.45)}70%{box-shadow:0 0 0 18px rgba(16,185,129,0)}100%{box-shadow:0 0 0 0 rgba(16,185,129,0)}}
-    @keyframes sheen{0%{background-position:0% 50%}100%{background-position:180% 50%}}
-    @keyframes pickPop{0%{transform:scale(1)}60%{transform:scale(1.02)}100%{transform:scale(1)}}
-    @keyframes drift{
-        0%   { transform:translate3d(0, 0, 0) scale(1); }
-        50%  { transform:translate3d(0, 10px, 0) scale(1.02); }
-        100% { transform:translate3d(-12px, -6px, 0) scale(1.04); }
-        }
-    @keyframes sweep{
-        to{ transform:rotate(360deg) scale(1.2); }
-        }
-    
-
-
-    .reveal{opacity:0;transform:translateY(14px)}
-    .reveal.show{animation:fadeUp .7s ease forwards}
-
-    /* Floating CTA */
-    .floating-cta{position:fixed;left:50%;transform:translateX(-50%);bottom:16px;z-index:70;display:none;align-items:center;justify-content:center;padding:14px 22px;border-radius:16px;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#03150f;font-weight:800;box-shadow:0 10px 30px rgba(16,185,129,.35)}
-    @media (max-width:900px){.floating-cta{display:flex}}
-
-    /* Smooth scroll */
-    html{scroll-behavior:smooth}
-    header,section{scroll-margin-top:86px}
-
-    /* Respect reduced motion */
-    @media (prefers-reduced-motion:reduce){.reveal,.cta{animation:none;transition:none}}
+    /* Optional: selection looks nicer */
+    ::selection{ background: rgba(255,210,110,.25); }
   </style>
 </head>
+
 <body>
-  <nav class="nav">
-    <div class="container wrap">
-      <div class="brand">
-        <span class="logo-dot"></span>
-        <h1>أسامة</h1>
-      </div>
-      <div class="menu" id="menu">
-        <a href="#home">الرئيسية</a>
-        <a href="#services">الخدمات</a>
-        <a href="#pricing">الباقات</a>
-        <a href="#contact">تواصل</a>
-        <!-- زر اطلب الآن يذهب إلى order.html -->
-        <a class="cta" href="order.html">اطلب الآن</a>
-      </div>
-      <button class="burger" id="burger" aria-label="قائمة"><span></span><span></span><span></span></button>
-    </div>
-    <div class="mobile" id="mobile">
-      <a href="#home">الرئيسية</a>
-      <a href="#services">الخدمات</a>
-      <a href="#pricing">الباقات</a>
-      <a href="#contact">تواصل</a>
-      <a class="cta" href="order.html">اطلب الآن</a>
-    </div>
-  </nav>
-
-  <header id="home" class="hero">
-    <div class="container wrap hero-center">
-      <div class="hero-block">
-        <div class="chip lead">لغة بسيطة • نتيجة واضحة • تصميم يلفت النظر</div>
-        <div class="bigname reveal">أسامة</div>
-        <h2 class="title reveal"><span class="grad">مواقع تُبهر</span> عميلك وتسهّل عليك الشرح</h2>
-        <p class="subtitle reveal">أصمم لك موقع شركة أو متجر سلة بتصميم فخم، بسيط، وسريع.</p>
-        <div class="hero-actions reveal">
-          <a class="cta" href="order.html">اطلب الآن</a>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <section id="about">
-    <div class="container">
-      <h3 class="sec-title">عنّي</h3>
-      <div class="card panel reveal" style="padding:20px">
-        <p>أنا أسامة — أصمّم صفحات رئيسية ومواقع تعريفية للشركات، وأجهّز متاجر سلة من الصفر بأسلوب بسيط يركّز على النتيجة. شغلي يعتمد على بناء واجهات خفيفة وسريعة (HTML/CSS/JS) تُنشر على Vercel، مع اهتمام بالتفاصيل العربية والـ RTL، وترتيب المحتوى بطريقة تقنع العميل يتواصل. عادةً أبدأ بصياغة رسالة واضحة للهيرو، بعدها أقسام خدمات/مميزات، ثم دعوة للتواصل (CTA) بارزة. للمتاجر أرتّب الأقسام، أضبط طرق الدفع والشحن، أكتب وصفًا مختصرًا للمنتجات، وأصمّم صورًا واضحة خاصة للمنتجات الرقمية. أضيف الصفحات الأساسية (سياسة، تواصل)، وأعطيك تدريبًا سريعًا على الإدارة.</p>
-        <p class="muted">لمسات تقنية أضيفها عند الحاجة: تحسين سرعة التحميل (ضغط صور، تنظيم الكود)، تهيئة أساسية للظهور في البحث، تكامل واتساب أو نموذج تواصل، وربط القياس البسيط (GA4) لو رغبت. هدفي النهائي: واجهة نظيفة وسريعة تعكس شغلك وتزيد التواصل بدون تعقيد.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="services">
-    <div class="container">
-      <h3 class="sec-title">الخدمات</h3>
-      <p class="sec-desc">بدون مصطلحات معقدة — المطلوب واضح ومباشر.</p>
-      <div class="grid cols-3">
-        <div class="card svc reveal">
-          <h3>متجر سلة</h3>
-          <p class="muted">تجهيز كامل وشكل نظيف وجاهز للبيع.</p>
-          <div class="mt-8">
-            <span class="pill">تصميم هوية وبنرات</span>
-            <span class="pill">ترتيب الأقسام والمنتجات</span>
-            <span class="pill">وصف يقنع بالشراء</span>
-            <span class="pill">صور احترافية للمنتجات الرقمية</span>
-            <span class="pill">تهيئة الدفع والشحن</span>
-            <span class="pill">صفحات أساسية (سياسة/تواصل)</span>
-            <span class="pill">تدريب سريع على الإدارة</span>
-          </div>
-        </div>
-        <div class="card svc reveal">
-          <h3>موقع للشركات</h3>
-          <p class="muted">واجهة تعريفية محترمة تزيد فرص التواصل.</p>
-          <div class="mt-8">
-            <span class="pill">هيرو برسالة مختصرة وواضحة</span>
-            <span class="pill">أقسام خدمات مقنعة</span>
-            <span class="pill">CTA بارز للتواصل</span>
-            <span class="pill">سرعة وتحسين أساسي للبحث</span>
-            <span class="pill">صور وبنرات متناسقة</span>
-            <span class="pill">تكامل واتساب/نموذج</span>
-          </div>
-        </div>
-        <div class="card svc reveal">
-          <h3>بورتفوليو للأفراد</h3>
-          <p class="muted">تعريف بسيط وأنيق عنك وخدماتك.</p>
-          <div class="mt-8">
-            <span class="pill">نبذة قوية بصياغة مرتبة</span>
-            <span class="pill">معرض أعمال قابل للتوسّع</span>
-            <span class="pill">روابط تواصل وشهادات</span>
-            <span class="pill">صور وبنرات متناسقة</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="pricing">
-    <div class="container">
-      <h3 class="sec-title">الباقات والأسعار</h3>
-      <p class="sec-desc">باقات مرنة تناسب ميزانيتك.</p>
-      <div class="pricing">
-        <div class="card price-card reveal">
-          <h4>الباقة الأساسية</h4>
-          <div class="price">300 <img class="sar" src="https://www.sama.gov.sa/ar-sa/Currency/Documents/Saudi_Riyal_Symbol-2.svg" alt="ريال سعودي"></div>
-          <ul class="pc-list">
-            <li>واجهة رئيسية أنيقة</li>
-            <li>عرض الخدمات والباقات</li>
-            <li>زر تواصل واتساب</li>
-            <li>تسليم سريع</li>
-          </ul>
-        </div>
-        <div class="card price-card reveal">
-          <h4>باقة متجر سلة</h4>
-          <div class="price">ابتداءً من 350 <img class="sar" src="https://www.sama.gov.sa/ar-sa/Currency/Documents/Saudi_Riyal_Symbol-2.svg" alt="ريال سعودي"></div>
-          <ul class="pc-list">
-            <li>بنرات + ترتيب أقسام</li>
-            <li>ضبط الدفع والشحن</li>
-            <li>وصف ومنتجات رقمية</li>
-          </ul>
-        </div>
-        <div class="card price-card reveal">
-          <h4>باقة موقع شركة</h4>
-          <div class="price">ابتداءً من 650 <img class="sar" src="https://www.sama.gov.sa/ar-sa/Currency/Documents/Saudi_Riyal_Symbol-2.svg" alt="ريال سعودي"></div>
-          <ul class="pc-list">
-            <li>تصميم محترم يعكس هويتك</li>
-            <li>متجاوب وسريع</li>
-            <li>صفحات إضافية عند الحاجة</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="container contact">
-      <div class="card panel">
-        <h3 class="sec-title">تواصل</h3>
-        <p class="sec-desc">للأسئلة السريعة أو عرض السعر — اكتب رسالتك واضغط إرسال.</p>
-        <textarea id="waMsg" class="msg" placeholder="مثال: أحتاج موقع شركة من 3 صفحات وصفحة تواصل. الميزانية 800–1200."></textarea>
-        <button id="sendWa" type="button" class="send">إرسال</button>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="container" style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
-      <span>© <script>document.write(new Date().getFullYear())</script> أسامة</span>
-      <span class="muted">@</span>
-    </div>
-  </footer>
-
-  <!-- زر اطلب الآن العائم -->
-  <a class="floating-cta" href="order.html">اطلب الآن</a>
-
-  <script>
-    // لا منطق جديد، نفس المنطق السابق تمامًا
-    const b=document.getElementById('burger');
-    const m=document.getElementById('mobile');
-    if(b&&m){b.addEventListener('click',()=>{const open=m.style.display==='block';m.style.display=open?'none':'block'})}
-
-    const obs=new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');obs.unobserve(e.target)}})
-    },{threshold:0.12});
-    document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-
-    document.querySelectorAll('.menu a[href^="#"], #mobile a[href^="#"]').forEach(a=>{
-      a.addEventListener('click',e=>{const id=a.getAttribute('href').slice(1);const el=document.getElementById(id);if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth',block:'start'});if(m){m.style.display='none';}}});
-    });
-
-    const sendBtn=document.getElementById('sendWa');
-    const msgEl=document.getElementById('waMsg');
-    const waPhone='966580638156';
-    if(sendBtn&&msgEl){
-      sendBtn.addEventListener('click',()=>{
-        const t=msgEl.value.trim()||'مرحبا أسامة، أحتاج عرض سعر.';
-        const url=`https://wa.me/${waPhone}?text=${encodeURIComponent(t)}`;
-        window.open(url,'_blank');
-      });
-    }
-
-    // لمسة: عند النقر على بطاقة سعر خليها تعطي نبضة خفيفة (مو منطق، مجرد موشن بصري)
-    document.querySelectorAll('.price-card').forEach(c=>{
-      c.addEventListener('click',()=>{c.classList.remove('picked');void c.offsetWidth;c.classList.add('picked');});
-    });
-  </script>
+  <div class="frame">
+    <div class="shine"></div>
+    <h1>اسامه الحارثي</h1>
+    <div class="sub">Signature • Osama Al-Harithi</div>
+  </div>
 </body>
 </html>
